@@ -1,0 +1,60 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @* Here's where we render the page title `String`. *@
+        <title>@title</title>
+        <meta name="verify-v1" content="bCqCdGWAZRbWcUCniUpB3WxD9rV0Z2Hr+ZLuzt67iVc=" />
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/layout.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+         @sidebar
+         <div id="centreposition">
+             <div id="centrecontent">
+                 @content
+             </div>
+         </div>
+    </body>    
+    @sidebar = {
+        <div id="left"> 
+          <ul>
+              <li><a href="/" onMouseOver="window.status='Home'; return true">Home</a><br></li>
+              <li><a href="cv" onMouseOver="window.status='My CV'; return true">CV</a><br></li>
+              <li><a href="liff" onMouseOver="window.status='The Meaning of Liff'; return true">Liff</a><br></li>
+              <li><a href="links" onMouseOver="window.status='Links'; return true">Links</a><br></li>
+              <li><a href="contact" onMouseOver="window.status='Contact details'; return true">Contact</a><br></li>
+              <li><a href="http://picasaweb.google.com/gavcos" onMouseOver="window.status='Photos'; return true">Photos</a><br></li>
+              <li><a href="http://gavcos.blogspot.com/" onMouseOver="window.status='Blog'; return true">Blog</a><br></li>
+          </ul>
+        </div>
+    }
+    @footer = {
+        <div id="footer">
+            <a href="http://www.enlightenment.org"><img src="@routes.Assets.versioned("images/enlightenment.png")" border="0" alt="Enlightenment"></a>
+            <a href="http://www.mozilla.org/products/firefox/" title="Get Firefox - The Browser, Reloaded">
+                <img src="http://www.mozilla.org/products/firefox/buttons/getfirefox_large2.png" 
+                width="178" height="60" border="0" alt="Get Firefox">
+            </a>
+            <a href="http://www.archlinux.org"><img src="@routes.Assets.versioned("images/archlinux-logo-dark-90dpi.png")" width="250" height="80" alt="Arch Linux" border="0"></a>
+            <br/>
+            <br/>
+            <a href="http://counter.li.org/"><img src="@routes.Assets.versioned("images/linuxReg.png")" alt="Linux Counter" border="0"></a>
+            <a href="http://vim.sf.net"><img src="@routes.Assets.versioned("images/vim_created.jpg")" alt="Vim" border="0"></a>
+            <a href="http://www.djangoproject.com"><img src="@routes.Assets.versioned("images/django.png")" alt="Django" border="0"></a>
+            @* {% include 'includes/now.html' %}
+            <p/>Currently listening to: <br/><img src="http://last.aelabs.net/images/recent.png?u=gavcos&limit=10&width=450" alt="gavcos's total tracks."/>
+            {% include 'includes/ggl_ad.html' %} *@
+        </div>
+    }
+</html>

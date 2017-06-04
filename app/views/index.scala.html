@@ -1,0 +1,37 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String)
+
+    @header = {
+        <div id="header">
+            <h2>Gavin Costello - Home Page</h2>
+        </div>
+    }
+    @content = {
+        I use <a href="http://www.mutt.org">Mutt</a> for email, and recently hacked a small shell script to create a distribution<br>
+        list containing all the addresses in an <i>.alias</i> file. You can download it <a href="alist" onMouseOver="window.status=\'Alias List Script\'; return true;">here</a>.
+        <p/>
+        Have also recently written a short <a href="http://code.google.com/p/gmail-abook-contact-converter/">python script</a> to convert an export <a href="http://www.gmail.com">Gmail</a> contacts vCard file to <a href="http://abook.sourceforge.net">abook</a> format. It's still very basic (only treats name, email, phone and nicknames), but I hope to improve on it when I find the time.
+        <p/>
+        I am an experienced Java developer currently working for <a href="http://www.tcs.com">Tata Consultancy Services</a> in Geneva.
+        <br/>
+        You can view my <a href="cv">CV</a> here.
+}
+
+
+@*
+ * Call the `main` template with two arguments. The first
+ * argument is a `String` with the title of the page, the second
+ * argument is an `Html` object containing the body of the page.
+ *@
+@main("Gavin Costello - Home Page") {
+    @*
+     * Get an `Html` object by calling the built-in Play welcome
+     * template and passing a `String` message.
+     * @welcome(message, style = "scala")
+     *@
+    @header
+    @content
+}

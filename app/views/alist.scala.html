@@ -1,0 +1,53 @@
+@header = {
+    <div id="header">
+        <h2>Gavin Costello - alist.sh </h2>
+    </div>
+}
+
+@content = {
+    <body bgcolor="#ffffff" text="#000000"><font face="monospace">
+    <font color="#8080ff">#!/bin/sh</font><br>
+    <font color="#8080ff"># alist:&nbsp;&nbsp; Creates a distribution list containing all contacts </font><br>
+    <font color="#8080ff">#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in the specified mutt alias file</font><br>
+    <font color="#8080ff"># Version:&nbsp;&nbsp;0.1</font><br>
+    <font color="#8080ff"># Author:&nbsp;&nbsp; Gavin Costello (gavcos@@gmail.com)</font><br>
+    <br>
+    <font color="#00ffff">PROGNAME</font>=<font color="#ff40ff">`basename </font><font color="#0000ff">&quot;</font><font color="#ff40ff">$0</font><font color="#0000ff">&quot;</font><font color="#ff40ff">`</font><br>
+    <font color="#00ffff">TMPDIR</font>=/tmp<br>
+    <br>
+    <font color="#0000ff">umask</font>&nbsp;<font color="#ff6060">077</font><br>
+    <br>
+    <font color="#0000ff">if</font>&nbsp;<font color="#0000ff">[</font>&nbsp;<font color="#ff40ff">$#</font>&nbsp;<font color="#0000ff">-lt</font>&nbsp;<font color="#ff6060">1</font>&nbsp;<font color="#0000ff">]</font><font color="#0000ff">;</font>&nbsp;<font color="#0000ff">then</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Usage: </font><font color="#ff40ff">${</font><font color="#ff40ff">PROGNAME</font><font color="#ff40ff">}</font><font color="#ff6060">&nbsp;aliases_file</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">exit</font>&nbsp;<font color="#ff6060">1</font><br>
+    <font color="#0000ff">fi</font><br>
+    <font color="#00ffff">SRC</font>=<font color="#ff40ff">$1</font><br>
+    <font color="#00ffff">DEST</font>=<font color="#ff40ff">$TMPDIR</font>/list<br>
+    <br>
+    <font color="#0000ff">if</font>&nbsp;<font color="#0000ff">[</font>&nbsp;<font color="#0000ff">-f</font>&nbsp;<font color="#ff40ff">$SRC</font>&nbsp;<font color="#0000ff">]</font><font color="#0000ff">;</font>&nbsp;<font color="#0000ff">then</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Backing up </font><font color="#0000ff">&quot;</font>&nbsp;<font color="#ff40ff">${</font><font color="#ff40ff">SRC</font><font color="#ff40ff">}</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;cp <font color="#ff40ff">$SRC</font>&nbsp;<font color="#ff40ff">$SRC</font>.bak<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">if</font>&nbsp;<font color="#0000ff">[</font>&nbsp;<font color="#0000ff">-s</font>&nbsp;<font color="#ff40ff">$DEST</font>&nbsp;<font color="#0000ff">]</font><font color="#0000ff">;</font>&nbsp;<font color="#0000ff">then</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Removing old list file</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rm -rf <font color="#ff40ff">$DEST</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">fi</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Creating new alias list</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;touch <font color="#ff40ff">$DEST</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;-n </font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">alias all </font><font color="#0000ff">&quot;</font>&nbsp;<font color="#0000ff">&gt;</font>&nbsp;<font color="#ff40ff">$DEST</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;cat <font color="#ff40ff">$SRC</font>&nbsp;<font color="#0000ff">|</font>&nbsp;awk <font color="#0000ff">'</font><font color="#ff6060">BEGIN { OFS=&quot;,&quot;; ORS=&quot; &quot;} { print $2 }</font><font color="#0000ff">'</font>&nbsp;<font color="#0000ff">&gt;&gt;</font>&nbsp;<font color="#ff40ff">$DEST</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Appending list to alias file</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;cat <font color="#ff40ff">$DEST</font>&nbsp;<font color="#0000ff">&gt;&gt;</font>&nbsp;<font color="#ff40ff">$SRC</font><br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;rm -rf <font color="#0000ff">&quot;</font><font color="#ff40ff">${</font><font color="#ff40ff">DEST</font><font color="#ff40ff">}</font><font color="#0000ff">&quot;</font>&nbsp;<font color="#0000ff">&amp;&amp;</font>&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Deleted temporary list file (</font><font color="#ff40ff">${</font><font color="#ff40ff">DEST</font><font color="#ff40ff">}</font><font color="#ff6060">).</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">exit</font>&nbsp;<font color="#ff6060">0</font><br>
+    <font color="#0000ff">else</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">echo</font><font color="#ff6060">&nbsp;</font><font color="#ff6060">1</font><font color="#0000ff">&gt;</font><font color="#0000ff">&amp;</font><font color="#ff6060">2</font>&nbsp;<font color="#0000ff">&quot;</font><font color="#ff6060">Unable to source alias file, check arguments</font><font color="#0000ff">&quot;</font><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000ff">exit</font>&nbsp;<font color="#ff6060">1</font><br>
+    <font color="#0000ff">fi</font><br>
+    </font></body>
+}
+
+@main("Gavin Costello - Mutt Alias Distribution List Generator") {
+    @header
+    @content
+}
