@@ -23,6 +23,7 @@
          <div id="centreposition">
              <div id="centrecontent">
                  @content
+                 @footer
              </div>
          </div>
     </body>    
@@ -42,16 +43,16 @@
     @footer = {
         <div id="footer">
             <a href="http://www.enlightenment.org"><img src="@routes.Assets.versioned("images/enlightenment.png")" border="0" alt="Enlightenment"></a>
-            <a href="http://www.mozilla.org/products/firefox/" title="Get Firefox - The Browser, Reloaded">
-                <img src="http://www.mozilla.org/products/firefox/buttons/getfirefox_large2.png" 
-                width="178" height="60" border="0" alt="Get Firefox">
-            </a>
             <a href="http://www.archlinux.org"><img src="@routes.Assets.versioned("images/archlinux-logo-dark-90dpi.png")" width="250" height="80" alt="Arch Linux" border="0"></a>
+            <a href="https://www.scala-lang.org"><img src="@routes.Assets.versioned("images/scala-cropped.png")" width="200" height="80" alt="Scala" border="0"></a>
             <br/>
             <br/>
             <a href="http://counter.li.org/"><img src="@routes.Assets.versioned("images/linuxReg.png")" alt="Linux Counter" border="0"></a>
             <a href="http://vim.sf.net"><img src="@routes.Assets.versioned("images/vim_created.jpg")" alt="Vim" border="0"></a>
-            <a href="http://www.djangoproject.com"><img src="@routes.Assets.versioned("images/django.png")" alt="Django" border="0"></a>
+            <a href="https://www.playframework.com"><img src="@routes.Assets.versioned("images/play_full_color.png")" 
+                alt="Play Framework" border="0" width="200" height="80">
+            </a>
+            @ggl_ad()
             @* {% include 'includes/now.html' %}
             <p/>Currently listening to: <br/><img src="http://last.aelabs.net/images/recent.png?u=gavcos&limit=10&width=450" alt="gavcos's total tracks."/>
             {% include 'includes/ggl_ad.html' %} *@
