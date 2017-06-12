@@ -23,8 +23,10 @@
          <div id="centreposition">
              <div id="centrecontent">
                  @content
-                 @footer
              </div>
+         </div>
+         <div id="footer">
+             @footer
          </div>
     </body>    
     @sidebar = {
@@ -48,14 +50,13 @@
             <br/>
             <br/>
             <a href="http://counter.li.org/"><img src="@routes.Assets.versioned("images/linuxReg.png")" alt="Linux Counter" border="0"></a>
-            <a href="http://vim.sf.net"><img src="@routes.Assets.versioned("images/vim_created.jpg")" alt="Vim" border="0"></a>
             <a href="https://www.playframework.com"><img src="@routes.Assets.versioned("images/play_full_color.png")" 
                 alt="Play Framework" border="0" width="200" height="80">
+            <a href="http://vim.sf.net"><img src="@routes.Assets.versioned("images/vim_created.jpg")" alt="Vim" border="0"></a>
             </a>
+        </div>
+        <div id="google_ad">
             @ggl_ad()
-            @* {% include 'includes/now.html' %}
-            <p/>Currently listening to: <br/><img src="http://last.aelabs.net/images/recent.png?u=gavcos&limit=10&width=450" alt="gavcos's total tracks."/>
-            {% include 'includes/ggl_ad.html' %} *@
         </div>
     }
 </html>

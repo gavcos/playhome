@@ -31,8 +31,13 @@ If you want a 3 column layout then change the centreposition style like this:   
 
 #footer {
     margin-left: 30px;
-	padding-left: 22%;
+	padding-left: 12%;
 	background-color: #FFFFF7;
+}
+
+#google_ad {
+	padding-left: 12%;
+    margin-top: 30px;
 }
 
 #left {
