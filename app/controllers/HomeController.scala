@@ -27,4 +27,5 @@ class HomeController @Inject() (implicit ec: ExecutionContext) extends Controlle
   def contact = Action.async { Future(Ok(views.html.contact())) }
   def links = Action.async { Future(Ok(views.html.links())) }
   def alist = Action.async { Future(Ok(views.html.alist())) }
+  def acme = Action.async { Future(Ok("YCAN9wIWZfn-_ZifwfNy4KSIfcUFZJ7t18n-m0Us3_w.9XrxGgZHeNggsJzMKAdVO3ln7FIUOM38fCADCQljEjQ")) }
 }
